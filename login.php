@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-      <link rel="stylesheet" href="assets/css/login.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-chubby/css/uicons-regular-chubby.css'>
+    <link rel="stylesheet" href="assets/css/login.css">
   </head>
   <body>
     <section class="container-fluid">
       <!-- login form -->
 
       <form action="" class="login-form d-flex flex-column justify-content-center" method="post">
-          <img class="img-fluid logo mx-auto" src="assets/images/shopiverse .png" alt="logo">
+           <img class="img-fluid logo mx-auto" src="assets/images/shopiverse .png" alt="logo">
 
-            <div class="form-group mt-2">
+        <div class="form-group mt-2">
               <label for="phone" class="fs-4"> Phone Number</label>
               <div class="d-flex">
                 <select name="countrycodes" id="countryCodes" class="rounded" >
@@ -28,8 +30,9 @@
 
             <div class="form-group mt-2">
               <label for="password" class="fs-4"> Password</label>
-              <div class="pwd-icon">
-                <input type="password" name="pwd" id="pwd" class="form-control">
+              <div class="pwd-icon d-flex">
+                <input type="password" name="pwd" id="pwd" class="form-control"></input>
+                <i class="fas fa-eye text-primary d-flex  align-items-center" id="togglePassword" style="cursor: pointer;"></i>
               </div>
             </div>
             

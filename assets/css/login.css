@@ -40,15 +40,23 @@ body * {
   width: 21em;
   padding: 1em 2em;
 
-  label {
-    border: 2px solid green;
-  }
  }
 
  .logo {
-  width: 10em;
-  height: 10em;
+  width: 7.3em;
+  height: 7.3em;
   object-fit: cover;
   object-position: center;
 
+ }
+
+ .pwd-icon {
+    input {
+      z-index: 1;
+    }
+
+    i {
+      z-index: 2;
+      margin-left: -30px;
+    }
  }
