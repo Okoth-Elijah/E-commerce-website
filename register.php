@@ -22,12 +22,12 @@
             <div class="form-group mt-2">
               <label for="phone" class="fs-4"> Phone Number</label>
               <div class="d-flex">
-                <select name="countryCode" id="countryCode" class="rounded" >
-                  <option value="Uganda">256</option>
-                  <option value="Kenya">245</option>
-                  <option value="Rwanda">243</option>
-                </select>
-                <input type="tel" name="phone" id="phone" class="form-control" placeholder="eg. 7564....." maxlength="10">
+                    <select name="countryCode" id="countryCode" class="rounded">
+                        <option value="256">Uganda (+256)</option>
+                        <option value="245">Kenya (+245)</option>
+                        <option value="243">Rwanda (+243)</option>
+                    </select>
+                <input type="tel" name="phone" id="phone" class="form-control" placeholder="eg. 7564.....">
               </div>
             </div>
 

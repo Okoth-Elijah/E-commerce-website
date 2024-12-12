@@ -1,50 +1,64 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['submitbtn'])) {
-    $username = $_POST["username"];
-    $phone = $_POST["phone"];
-    $pwd = password_hash($_POST["pwd"], PASSWORD_DEFAULT); // Hashing password
-    $countryCode = $_POST["countryCode"];
-    $email = $_POST["email"];
+    // Sanitize input data
+    $username = htmlspecialchars(trim($_POST["username"]));
+    $phone = htmlspecialchars(trim($_POST["phone"]));
+    $pwd = isset($_POST["pwd"]) ? password_hash($_POST["pwd"], PASSWORD_DEFAULT) : null; // Hashing password
+    $countryCode = htmlspecialchars(trim($_POST["countryCode"]));
+    $email = htmlspecialchars(trim($_POST["email"]));
+
+    // Check for missing inputs
+    if (!$username || !$phone || !$pwd || !$countryCode || !$email) {
+        echo "<script>alert('All fields are required. Please fill out the form completely.'); window.location.href='register.php';</script>";
+        exit();
+    }
 
     // Concatenate the country code with the phone number
     $fullPhoneNumber = "+" . $countryCode . $phone;
 
-    // Validate the phone number
-    if (preg_match('/^\+\d{10,15}$/', $fullPhoneNumber)) {
-        echo "Full Phone Number: " . $fullPhoneNumber;
-    } else {
-        echo "Invalid phone number format.";
-        exit();
-    }
+    // Validate the phone number format
+    if (!preg_match('/^\+\d{9,15}$/', $fullPhoneNumber)) {
+      echo "<script>alert('Invalid phone number format. Ensure it has between 10 and 15 digits.'); window.location.href='register.php';</script>";
+      exit();
+  }
+  
 
     try {
-        require_once "dbh.inc.php"; 
-        
-        // Ensure the query is correct for inserting data
+        // Include database connection file
+        require_once "dbh.inc.php";
+
+        // Prepare SQL query for inserting data
         $query = "INSERT INTO users (username, phone, pwd, countryCode, email) VALUES (:username, :phone, :pwd, :countryCode, :email)";
         $stmt = $pdo->prepare($query);
 
         // Bind parameters to the prepared statement
         $stmt->bindParam(":username", $username);
-        $stmt->bindParam(":phone", $fullPhoneNumber); // Binding full phone number
+        $stmt->bindParam(":phone", $fullPhoneNumber);
         $stmt->bindParam(":pwd", $pwd);
         $stmt->bindParam(":countryCode", $countryCode);
         $stmt->bindParam(":email", $email);
 
         // Execute the query
         $stmt->execute();
-
-        // Close the connection
-        $pdo = null;
+        $pdo = null; 
         $stmt = null;
 
         // Redirect to login page after successful registration
-        header("Location: login.php");
-        die();
+        header("Location: ../login.php");
+
+        // $username = null;
+        // $phone = null; 
+        // $pwd = null;
+        // $email = null; 
+        exit();
     } catch (PDOException $e) {
-        die("Connection failed: " . $e->getMessage());
+        // Handle database errors
+        echo "<script>alert('Registration failed: " . $e->getMessage() . "'); window.location.href='../register.php';</script>";
+        exit();
     }
 } else {
-    header("Location: register.php");
+    // Redirect if accessed directly
+    header("Location: ../register.php");
+    exit();
 }
 ?>
