@@ -12,20 +12,20 @@
     <section class="container-fluid">
       <!-- register form -->
 
-      <form action="" class="register-form d-flex flex-column justify-content-center" method="post">
+      <form action="./includes/register-formhandler.php" class="register-form d-flex flex-column justify-content-center" method="post">
           <img class="img-fluid logo mx-auto" src="assets/images/shopiverse .png" alt="logo">
             <div class="form-group mt-2">
-              <label for="names" class="fs-4"> Names</label>
-              <input type="text" name="names" id="names" class="form-control" placeholder="Enter Full Names">
+              <label for="username" class="fs-4"> Names</label>
+              <input type="text" name="username" id="username" class="form-control" placeholder="Enter Full Names">
             </div>
 
             <div class="form-group mt-2">
               <label for="phone" class="fs-4"> Phone Number</label>
               <div class="d-flex">
-                <select name="countrycodes" id="countryCodes" class="rounded" >
-                  <option value="Uganda">+256</option>
-                  <option value="Kenya">+245</option>
-                  <option value="Rwanda">+243</option>
+                <select name="countryCode" id="countryCode" class="rounded" >
+                  <option value="Uganda">256</option>
+                  <option value="Kenya">245</option>
+                  <option value="Rwanda">243</option>
                 </select>
                 <input type="tel" name="phone" id="phone" class="form-control" placeholder="eg. 7564....." maxlength="10">
               </div>
@@ -40,14 +40,6 @@
               <label for="password" class="fs-4"> Password</label>
               <div class="pwd-icon d-flex">
                 <input type="password" name="pwd" id="pwd" class="form-control"></input>
-                <i class="fas fa-eye text-primary d-flex  align-items-center" id="togglePassword" style="cursor: pointer;"></i>
-              </div>
-            </div>
-
-            <div class="form-group mt-2">
-              <label for="ConfirmPwd" class="fs-4"> Confirm Password</label>
-              <div class="pwd-icon d-flex">
-                <input type="confirmPwd" name="pwd" id="pwd" class="form-control"></input>
                 <i class="fas fa-eye text-primary d-flex  align-items-center" id="togglePassword" style="cursor: pointer;"></i>
               </div>
             </div>
